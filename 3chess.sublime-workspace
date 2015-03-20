@@ -1,0 +1,408 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"print",
+				"printConsole	function"
+			],
+			[
+				"console",
+				"console_text	statement"
+			],
+			[
+				"pla",
+				"playerDisplay"
+			],
+			[
+				"player",
+				"playerDisplay	statement"
+			],
+			[
+				"gre",
+				"grey"
+			],
+			[
+				"rookr",
+				"rookr"
+			],
+			[
+				"x",
+				"x	forflow"
+			],
+			[
+				"backgr",
+				"background-repeat"
+			],
+			[
+				"backgro",
+				"background-image"
+			],
+			[
+				"refe",
+				"referral"
+			],
+			[
+				"User",
+				"User"
+			],
+			[
+				"ref",
+				"ref_id	statement"
+			],
+			[
+				"HttpR",
+				"HttpResponseRedirect	class"
+			],
+			[
+				"s",
+				"setDisplay"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "3chess.py",
+			"settings":
+			{
+				"buffer_size": 23510,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"control",
+				"Package Control: Install Package"
+			],
+			[
+				"package control install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation') "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new"
+	],
+	"file_history":
+	[
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/dev_img/colours",
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/changelog",
+		"/home/maciej/.cache/.fr-8LqEOy/glyph-2.6.5b/setup.py",
+		"/home/maciej/Downloads/glyph-2.6.5b/setup.py",
+		"/home/maciej/Copy Decrypted/Development/Projects/Moj Pyton/pyton.py",
+		"/home/maciej/Downloads/praca",
+		"/home/maciej/Downloads/call 2/serial call 2.txt",
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/TO_DO",
+		"/var/tmp/kdecache-maciej/krun/3431_0_videoRotation.cpp",
+		"/home/maciej/lab3/videoRotation.cpp",
+		"/home/maciej/Development/Projects/3chess_new/3chess.py",
+		"/home/maciej/.i3/config",
+		"/home/maciej/Downloads/loadImage.c",
+		"/home/maciej/Downloads/compile.sh",
+		"/var/tmp/kdecache-maciej/krun/3356_0_compile.sh",
+		"/var/tmp/kdecache-maciej/krun/3316_0_loadImage.c",
+		"/home/maciej/Downloads/cv.h",
+		"/home/maciej/Development/Projects/KCK/08/generator/src/generator/Generator.java",
+		"/home/maciej/Development/Projects/KCK/07/kck/generator/src/generator/Generator.java",
+		"/home/maciej/Copy/Development/Projects/3chess/3chess.py",
+		"/home/maciej/Development/Projects/3chess/3chess.py",
+		"/home/maciej/Copy/Development/Projects/3chess/res_conf/1280x960.res",
+		"/home/maciej/Copy/Development/Projects/3chess/1024x720.conf",
+		"/home/maciej/Copy/Development/Projects/3chess/1280x960.conf",
+		"/home/maciej/Development/Projects/Moj Pyton/pyton.py",
+		"/home/maciej/Copy/Development/Django/lwc/templates/base.html",
+		"/home/maciej/Copy/Development/Django/lwc/templates/share.html",
+		"/home/maciej/Copy/Development/Django/lwc/lwc/views.py",
+		"/home/maciej/Copy/Development/Django/lwc/templates/donotuse.html",
+		"/home/maciej/Copy/Development/Django/lwc/lwc/urls.py",
+		"/home/maciej/Copy/Development/Django/lwc/templates/home.html",
+		"/home/maciej/Downloads/Snatch (2000)/Snatch.2000.BRRip.txt",
+		"/home/maciej/Downloads/Dostojewski Biesy",
+		"/home/maciej/Downloads/Dostojewski Biesy.txt",
+		"/home/maciej/Copy/Development/Django/lwc/appka/models.py",
+		"/home/maciej/Copy/Development/Django/lwc/appka/admin.py",
+		"/home/maciej/Copy/Development/Django/lwc/lwc/settings.py",
+		"/home/maciej/Copy/Development/Django/lwc/appka/views.py",
+		"/home/maciej/Copy/Development/Django/lwc/appka/forms.py",
+		"/home/maciej/Copy/Development/Django/lwc/lwc/middleware.py",
+		"/home/maciej/Development/Django/lwc/templates/base.html",
+		"/home/maciej/Development/Django/lwc/appka/views.py",
+		"/home/maciej/Development/Django/lwc/appka/admin.py",
+		"/home/maciej/Development/Django/lwc/(unreachable)/Development/Django/lwc/appka/tests.py",
+		"/home/maciej/Development/Django/lwc/templates/css/jumbotron.css",
+		"/home/maciej/Development/Django/lwc/templates/js/ie-emulation-modes-warning.js",
+		"/home/maciej/Development/Django/lwc/templates/navbar.html",
+		"/home/maciej/.i3status.conf",
+		"/home/maciej/Development/Django/lwc/lwc/urls.py",
+		"/home/maciej/Development/Django/lwc/lwc/views.py",
+		"/home/maciej/Development/Django/lwc/lwc/settings.py",
+		"/home/maciej/Development/Django/lwc/templates/home.html",
+		"/home/maciej/.mozilla/firefox/mwad0hks.default/chrome/userContent.css",
+		"/home/maciej/Copy/Development/Python/sentdex/keys.py",
+		"/home/maciej/Copy/Development/Django/lwc/manage.py",
+		"/home/maciej/Copy/Development/Projects/Moj Pyton/pyton.py",
+		"/home/maciej/Copy/Development/Python/sentdex/agatka.py",
+		"/home/maciej/Copy/Development/Python/test.py",
+		"/usr/lib/python2.7/dist-packages/pygame/__init__.py",
+		"/home/maciej/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/maciej/Development/Django/lwc/appka"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"killed",
+			"kill",
+			"out",
+			"define",
+			"surface",
+			"black",
+			"to",
+			"langdict",
+			"language",
+			"testRe",
+			"findSq",
+			"runGame",
+			"][1]",
+			"square[",
+			"castel",
+			"pawnw",
+			"L11",
+			"pawnb",
+			"pionek",
+			"pionek\n",
+			";\n",
+			"I6",
+			"])\n",
+			"res_y",
+			"pionek2",
+			"find",
+			"board_res",
+			"findSquares",
+			"pionek",
+			"square_colour",
+			":\n",
+			"color",
+			"board_color",
+			"plaeyDisplay",
+			"setDisp",
+			"bg",
+			"¯",
+			"¿",
+			"Ÿ",
+			"œ",
+			"æ",
+			"¹",
+			"³",
+			"ê",
+			"</hr>",
+			"6",
+			"10",
+			"3",
+			"frind_id",
+			")\n",
+			"print",
+			"get_or_create",
+			"<h1>Welcome</h1>",
+			"\n    global fpsTime\n    global setDisplay\n\n    fpsTime = pygame.time.Clock()\n    setDisplay = pygame.display.set_mode((resWidth,resHeight))\n    pygame.display.set_caption('controlling')\n    runGame()"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"ld",
+			"lang",
+			"",
+			"rook",
+			"pawnr",
+			"pawnw",
+			"pawnb",
+			"pawng",
+			"res_x",
+			"Ż",
+			"ż",
+			"ź",
+			"ś",
+			"ć",
+			"ą",
+			"ł",
+			"ę"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "3chess.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 23510,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2655.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 139.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "3chess.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 162.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

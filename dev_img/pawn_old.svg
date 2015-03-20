@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48px"
+   height="48px"
+   id="svg3165"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="pawn.svg"
+   inkscape:export-filename="/home/maciej/Development/Projects/3chess_new/img/pawnr.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs3167" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="14"
+     inkscape:cx="9"
+     inkscape:cy="18.285714"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1916"
+     inkscape:window-height="1037"
+     inkscape:window-x="0"
+     inkscape:window-y="22"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3170">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g3006"
+       transform="matrix(0.9890205,0,0,1.0092414,-61.791632,-0.615096)" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       sodipodi:nodetypes="ccccccccccccc"
+       inkscape:connector-curvature="0"
+       id="path3766-8-3"
+       d="m 37.278977,6.9417825 c -1.47715,3.8225035 -4.85653,7.2222885 -4.431451,11.4675095 l -3.183132,0.607137 C 27.460262,20.919307 28.383333,28.15317 29.813286,30.058928 33.35023,35.812936 35.640454,32.422992 42.793,36.653 40.384386,41.073026 33.45173,46.695992 24.072918,47.412014 16.385284,46.949864 10.611606,43.563615 5.1245928,36.65333 12.27714,32.423323 14.795606,35.8133 18.33255,30.059292 c 1.429953,-1.905759 2.353025,-9.139622 0.148892,-11.0425 L 15.29831,18.409655 C 15.872653,14.245236 12.378304,10.758933 10.866859,6.9421456 14.258814,2.241113 19.387858,0.98712216 24.072918,0.88251771 28.757978,0.98675905 33.887023,2.2407499 37.278977,6.9417825 z"
+       style="fill:#ff2323;fill-opacity:1;stroke:#565556;stroke-width:1.82061398;stroke-opacity:1"
+       inkscape:export-filename="/home/maciej/Development/Projects/3chess_new/img/path3766-8-3.png" />
+  </g>
+</svg>

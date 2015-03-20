@@ -1,0 +1,47 @@
+3chess changelog
+Maciej Sobolewski
+
+Version 0.1.6
+Date: 15.03.2015
+- Minor bugfixes.
+- Output modifications.
+- Chosen one "animation".
+
+Version 0.1.6
+Date: 14.03.2015
+- Turns recognition implemented.
+- Ally/enemy recognition implemented.
+
+Version 0.1.5
+Date: 13.03.2015
+- Moving and killing is now fully functional.
+- Moves printing.
+- Complete chessmen graphics implemented.
+- Minor bugs fixing.
+
+Version 0.1.4
+Date: 11.03.2015
+- First chessmen graphics added.
+- Added functions for moving chessmen at mouse click.
+- Modifications in chessmen class.
+- Added basic language dictionary.
+
+Version 0.1.3
+Date: 02.03.2015
+- Completly new square finding algorithm.
+
+Version 0.1.2
+Date: 15.02.2015
+- Modified Chessman.move() function to work properly.
+- Bad squares in alhorithm noticed and being hunted for.
+- Repaired A4 bad square.
+
+Version 0.1.1
+Date: 01.10.2014 to 14.02.2015
+- Main program.
+- Board image.
+- Resolution and squares algorithm.
+- Basic classes and functions.
+
+
+
