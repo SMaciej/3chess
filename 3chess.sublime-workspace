@@ -67,7 +67,31 @@
 			"file": "3chess.py",
 			"settings":
 			{
-				"buffer_size": 23510,
+				"buffer_size": 23543,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "TO_DO",
+			"settings":
+			{
+				"buffer_size": 85,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "changelog",
+			"settings":
+			{
+				"buffer_size": 1019,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 254,
 				"line_ending": "Unix"
 			}
 		}
@@ -121,8 +145,9 @@
 	],
 	"file_history":
 	[
-		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/dev_img/colours",
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/license",
 		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/changelog",
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/dev_img/colours",
 		"/home/maciej/.cache/.fr-8LqEOy/glyph-2.6.5b/setup.py",
 		"/home/maciej/Downloads/glyph-2.6.5b/setup.py",
 		"/home/maciej/Copy Decrypted/Development/Projects/Moj Pyton/pyton.py",
@@ -296,15 +321,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 23510,
+						"buffer_size": 23543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								266,
-								266
+								32,
+								32
 							]
 						],
 						"settings":
@@ -314,10 +339,94 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2655.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "TO_DO",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 85,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "changelog",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								177,
+								177
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

@@ -1,3 +1,6 @@
+# 3chess
+# by Maciej Sobolewski
+
 import pygame
 import sys
 import random

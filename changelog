@@ -1,8 +1,9 @@
 3chess changelog
 Maciej Sobolewski
 
-Version 0.1.6
+Version 0.2
 Date: 15.03.2015
+- Stable enough to call it an alpha version.
 - Minor bugfixes.
 - Output modifications.
 - Chosen one "animation".
