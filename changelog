@@ -1,6 +1,21 @@
 3chess changelog
 Maciej Sobolewski
 
+
+Version 0.2.3
+Date: 31.03.2015
+- Added interface classes.
+- Undo button functionality implemented.
+
+Version 0.2.2
+Date: 24.03.2015
+- Undo function implemented.
+
+Version 0.2.1
+Date: 24.03.2015
+- First lines of undo function.
+- Minor bugfixes.
+
 Version 0.2
 Date: 15.03.2015
 - Stable enough to call it an alpha version.

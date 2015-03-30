@@ -5,7 +5,6 @@ import pygame
 import sys
 import random
 import pickle
-import glyph
 from pygame.locals import *
 
 
@@ -20,8 +19,8 @@ grey = (89,99,99)
 
 # Globals definitions:
 fps = 25
-res_x = 960
-res_y = 960
+res_x = 1280
+res_y = 900
 debug_mode = True
 lang = 'english'
 square = {} # Definitions of the board's squares.
@@ -29,9 +28,9 @@ alphabet_codes = {1:'A', 2:'B', 3:'C', 4:'D', 5:'E', 6:'F', 7:'G', 8:'H', 9:'I',
 chosen = False  # False, when there is no chessman chosen.
 turn = ''   # States whose turn it is.
 out = ''    # Console output for moves.
-history = ['', '', '', '', '', '', '', '', '', '']  # History of moves.
+history = []  # History of moves.
 chessmen_list = []  # Chessmen list.
-
+killed_chessmen = [] # Captured chessmen list.
 
 # Functions definitions:
 def defineLanguages():
@@ -41,7 +40,7 @@ def defineLanguages():
     global turn
 
     ld = {
-        'english': {'white':'white', 'crimson':'crimson', 'green':'green', 'pawn':'pawn', 'knight':'knight', 'bishop':'bishop', 'rook':'rook', 'queen':'queen', 'king':'king', 'to':'to', 'killed':'captures', 'on':'on', 'its':"It's", 'turn':'turn', 'start':'Start.'}
+        'english': {'white':'white', 'crimson':'crimson', 'green':'green', 'pawn':'pawn', 'knight':'knight', 'bishop':'bishop', 'rook':'rook', 'queen':'queen', 'king':'king', 'to':'to', 'killed':'captures', 'on':'on', 'its':"It's", 'turn':'turn', 'start':'Start.', 'prevTurn':'Moving to previous turn.'}
     }
 
     turn = ld[lang]['white'] # Set first turn.
@@ -269,7 +268,7 @@ def redrawChessmen():
             playerDisplay.blit(chessman.image, chessman.pos)
 
 def mouseClick(square, symbol):
-    """Defines action for a mouse click."""
+    """Defines action for a left mouse click."""
 
     if chosen != True:  # Action, when there is now chessman chosen.
         for chessman in chessmen_list:
@@ -285,7 +284,7 @@ def mouseClick(square, symbol):
                 elif chessman.state == 'idle':  # Action, when the player clicks on the actually occupied square.
                     if chessman.colour == turn: # If the chessman is friendly, choose it.
                         chessman.choose()
-                    else:                       # If the chessman is an enemy, kill it.
+                    else:                       # If the chessman is an enemy, capture it.
                         chessman.kill(symbol)
                         moveChessman(square, symbol, True)
                     return
@@ -302,14 +301,44 @@ def moveChessman(square, symbol, kill):
             chessman.state = 'idle'
             chosen = False
             if kill == False:
-                out += '%s %s.\n' % (ld[lang]['to'], symbol)
+                out += '%s %s.' % (ld[lang]['to'], symbol)
             else:
-                out += '%s %s.\n' % (ld[lang]['on'], symbol)
-            #console.printConsole(out)
-            print out
+                out += '%s %s.' % (ld[lang]['on'], symbol)
+            console.printConsole(out)
             chessman.changeImage(chessman.graphic) # Change image to default.
             nextTurn()
             return
+
+def undoMove():
+    """Undo last move."""
+
+    # Check if there was a capturing
+    if history[-1].split()[3] == ld[lang]['killed']: # Check if the last entry in history was about capturing.
+
+        for chessman in chessmen_list:
+            if history[-1].split()[7][0:2] == chessman.square and chessman.state == 'idle': # Find our attacker.
+                for i in square:
+                    if square[i][2] == history[-1].split()[2]:
+                        chessman.move(square[i][1], history[-1].split()[2]) # Move the attacker to the previous position.
+                break
+
+        for i in square:
+            if square[i][2] == history[-1].split()[7][0:2]:
+                chessman = killed_chessmen.pop() # Take the last captured chessman from list.
+                chessman.move(square[i][1], history[-1].split()[7][0:2]) # Move it to the previous position.
+                chessman.state = 'idle'
+
+        
+    else:
+        for chessman in chessmen_list:
+            if history[-1].split()[4][0:2] == chessman.square: # Find which chessman was moved.
+                for i in square:
+                    if square[i][2] == history[-1].split()[2]:
+                        chessman.move(square[i][1], history[-1].split()[2]) # Move it to the previous location.
+                        break
+    history.pop()
+    prevTurn()
+    return
 
 def nextTurn():
     """Switches to the next turn"""
@@ -323,6 +352,23 @@ def nextTurn():
     elif turn == ld[lang]['green']:
        turn = ld[lang]['white']
     print '%s %s %s.' % (ld[lang]['its'], turn, ld[lang]['turn'])
+
+    return
+
+def prevTurn():
+    """Switches to the previous turn"""
+
+    global turn
+
+    if turn == ld[lang]['white']:
+       turn = ld[lang]['green']
+    elif turn == ld[lang]['crimson']:
+       turn = ld[lang]['white']
+    elif turn == ld[lang]['green']:
+       turn = ld[lang]['crimson']
+    print '%s %s %s %s.' % (ld[lang]['prevTurn'], ld[lang]['its'], turn, ld[lang]['turn'])
+
+    return
 
 
 # Classes definitions:
@@ -373,9 +419,10 @@ class Chessman(object):
 
         global out
 
-        self.move((0,0), '0')
+        self.move((0,0), history[-1])
         redrawChessmen()
         self.state = 'killed'
+        killed_chessmen.append(self)
         out += '%s %s %s ' % (ld[lang]['killed'], self.colour, self.type)
 
     def changeImage(self, image):
@@ -387,36 +434,86 @@ class Chessman(object):
 class Console(object):
     """Console for printing moves."""
 
-    def __init__(self):
-        console_font = pygame.font.SysFont("monospace", 15)
-        self.console1 = console_font.render(history[-1], 1, white)
-        self.console2 = console_font.render(history[-2], 1, white)
-        self.console3 = console_font.render(history[-3], 1, white)
-        self.console4 = console_font.render(history[-4], 1, white)
-        self.console5 = console_font.render(history[-5], 1, white)
-        self.console6 = console_font.render(history[-6], 1, white)
-        self.console7 = console_font.render(history[-7], 1, white)
-        self.console8 = console_font.render(history[-8], 1, white)
-        self.console9 = console_font.render(history[-9], 1, white)
-        self.console10 = console_font.render(history[-10], 1, white)
+    #def __init__(self):
+        # console_font = pygame.font.SysFont("monospace", 15)
+        # self.console1 = console_font.render(history[-1], 1, white)
+        # self.console2 = console_font.render(history[-2], 1, white)
+        # self.console3 = console_font.render(history[-3], 1, white)
+        # self.console4 = console_font.render(history[-4], 1, white)
+        # self.console5 = console_font.render(history[-5], 1, white)
+        # self.console6 = console_font.render(history[-6], 1, white)
+        # self.console7 = console_font.render(history[-7], 1, white)
+        # self.console8 = console_font.render(history[-8], 1, white)
+        # self.console9 = console_font.render(history[-9], 1, white)
+        # self.console10 = console_font.render(history[-10], 1, white)
 
     def printConsole(self, text):
         """ Prints text."""
 
-        global history
-
         history.append(text)
+        print text
 
-        playerDisplay.blit(self.console1 , (965, 605))
-        playerDisplay.blit(self.console2 , (965, 615))
-        playerDisplay.blit(self.console3 , (965, 625))
-        playerDisplay.blit(self.console4 , (965, 635))
-        playerDisplay.blit(self.console5 , (965, 645))
-        playerDisplay.blit(self.console6 , (965, 655))
-        playerDisplay.blit(self.console7 , (965, 665))
-        playerDisplay.blit(self.console8 , (965, 675))
-        playerDisplay.blit(self.console9 , (965, 685))
-        playerDisplay.blit(self.console10 , (965, 695))
+        # playerDisplay.blit(self.console1 , (965, 605))
+        # playerDisplay.blit(self.console2 , (965, 615))
+        # playerDisplay.blit(self.console3 , (965, 625))
+        # playerDisplay.blit(self.console4 , (965, 635))
+        # playerDisplay.blit(self.console5 , (965, 645))
+        # playerDisplay.blit(self.console6 , (965, 655))
+        # playerDisplay.blit(self.console7 , (965, 665))
+        # playerDisplay.blit(self.console8 , (965, 675))
+        # playerDisplay.blit(self.console9 , (965, 685))
+        # playerDisplay.blit(self.console10 , (965, 695))
+
+class Interface(object):
+    """User interface."""
+
+    def __init__(self, type):
+        f = getattr(self, '%sInterface' % type)() # Run function responsible for certain interface.
+
+    def mainInterface(self):
+        """Create main user interface."""
+
+        self.title = Caption(res_x/1.368929293, res_y/38.4, 'PyChess', res_y/12, white)
+        self.options_button = Button(1080, 500, 'Options', int(res_y/24), white, 165, 50)
+        self.undo_button = Button(930, 500, 'Undo', int(res_y/24), white, 130, 50)
+
+    def optionsInterface(self):
+        """Create options interface."""
+
+        self.title = Caption(res_x/1.358929293, res_y/38.4, 'Options', res_y/12, white)
+        self.save_button = Button(955, 150, 'Save', int(res_y/24), white, 265, 50)
+        self.load_button = Button(955, 225, 'Load', int(res_y/24), white, 265, 50)
+        self.resolution_button = Button(955, 300, 'Resolution', int(res_y/24), white, 265, 50)
+        self.language_button = Button(955, 375, 'Language', int(res_y/24), white, 265, 50)
+        self.back_button = Button(955, 450, 'Back', int(res_y/24), white, 265, 50)
+
+
+class Button(Interface):
+    """Create single button."""
+
+    def __init__(self, x, y, caption, text_size, colour, size_x, size_y):
+        self.x = x
+        self.y = y
+        self.size_x = size_x
+        self.size_y = size_y
+        pygame.draw.rect(playerDisplay, colour, (x, y, size_x, size_y), 2)
+        self.button_font = pygame.font.SysFont("Verdana", text_size)
+        self.text = self.button_font.render(caption, 1, colour)
+        playerDisplay.blit(self.text, (x+res_x/100, y))
+
+    def checkClick(self, mouse_pos):
+        """Check if the button was clicked."""
+        if mouse_pos > (self.x, self.y) and mouse_pos < (self.x + self.size_x, self.y + self.size_y):
+            return True
+
+class Caption(Interface):
+    """Create a caption."""
+
+    def __init__(self, x, y, caption, text_size, colour):
+        self.caption_font = pygame.font.SysFont("Verdana", text_size)
+        self.caption = self.caption_font.render(caption, 1, colour)
+        playerDisplay.blit(self.caption, (x, y))
+
 
 
 # Main function:
@@ -437,11 +534,22 @@ def runGame():
         # Checking mouse click by colour and coordinates:
         mpos = pygame.mouse.get_pos()
         for i in square:
-            # try:
-            if pygame.mouse.get_pressed()[0] == True and str(board_colour.get_at(mpos)) == square[i][0]:
-                mouseClick(square[i][1], square[i][2])
-            # except:
-            #     print 'Mouse is not on the board.'
+            try:
+                if pygame.mouse.get_pressed()[0] == True and str(board_colour.get_at(mpos)) == square[i][0]:
+                    mouseClick(square[i][1], square[i][2])
+                    break
+            except:
+                if pygame.mouse.get_pressed()[0] == True and history and user_interface.undo_button.checkClick(mpos):
+                    undoMove()
+                    break
+                # if pygame.mouse.get_pressed()[0] == True and user_interface.options_button.checkClick(mpos):
+                #     del user_interface
+                #     user_interface = Interface('options')
+                #     break
+                # if pygame.mouse.get_pressed()[0] == True and user_interface.back_button.checkClick(mpos):
+                #     del user_interface
+                #     user_interface = Interface('main')
+                #     break
 
 
         # Debug mode:
@@ -452,10 +560,19 @@ def runGame():
 
         # Display board stuff:
         playerDisplay.blit(board, (0,0))
-        #pygame.draw.rect(playerDisplay, black, (960, 600, 330, 300))
-        #pygame.draw.rect(playerDisplay, white, (985, 25, 275, 50), 2)
+        pygame.draw.rect(playerDisplay, black, (res_x/1.422222222, res_y/1.6, res_x/3.282051282, res_y/2.642857143))
+
+        
+
+        # pygame.draw.rect(playerDisplay, white, (950, 120, 280, 50), 2)
+        # pygame.draw.rect(playerDisplay, white, (950, 200, 280, 50), 2)
+        # pygame.draw.rect(playerDisplay, white, (950, 280, 280, 50), 2)
+
+
 
         # Testing:
+
+
         redrawChessmen()
         pygame.display.update()
         fpsTime.tick(fps)
@@ -463,8 +580,6 @@ def runGame():
 
 # Start game:
 while True: 
-    global playerDisplay
-    global fpsTime
 
     fpsTime = pygame.time.Clock() # Set fps.
     playerDisplay = pygame.display.set_mode((res_x,res_y)) 
@@ -482,8 +597,10 @@ while True:
 
 
     # Run basic starting functions:
+
     defineLanguages()
     testResolutionConfig()
     createChessmen()
+    user_interface = Interface('main')
 
     runGame()
