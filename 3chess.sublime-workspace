@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"opti",
+				"optionsInterface	function"
+			],
+			[
 				"prev",
 				"prevTurn"
 			],
@@ -76,21 +80,18 @@
 	"buffers":
 	[
 		{
-			"file": "changelog",
+			"file": "3chess.py",
 			"settings":
 			{
-				"buffer_size": 1263,
+				"buffer_size": 30478,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Merge branch 'master' of https://github.com/SMaciej/3chess\n\n# Please enter a commit message to explain why this merge is necessary,\n# especially if it merges an updated upstream into a topic branch.\n#\n# Lines starting with '#' will be ignored, and an empty message aborts\n# the commit.\n",
-			"file": ".git/MERGE_MSG",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "changelog",
 			"settings":
 			{
-				"buffer_size": 286,
+				"buffer_size": 1333,
 				"line_ending": "Unix"
 			}
 		}
@@ -140,10 +141,15 @@
 	},
 	"expanded_folders":
 	[
-		"/home/maciej/Copy/Development/Projects/3chess"
+		"/home/maciej/Copy/Development/Projects/3chess",
+		"/home/maciej/Copy/Development/Projects/3chess/games"
 	],
 	"file_history":
 	[
+		"/home/maciej/Copy/Development/Projects/3chess/example.py",
+		"/home/maciej/Copy/Development/Projects/3chess/eztext.py",
+		"/home/maciej/Copy/Development/Projects/3chess/changelog",
+		"/home/maciej/Copy/Development/Projects/3chess/.git/MERGE_MSG",
 		"/home/maciej/Copy/Development/Projects/3chess/.git/COMMIT_EDITMSG",
 		"/home/maciej/Copy/Development/Projects/3chess/3chess.py",
 		"/home/maciej/Development/Projects/3chess/changelog",
@@ -228,6 +234,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"save",
+			"()",
+			"save_button",
+			"screen",
+			"load",
+			"undo",
+			"pickle",
+			"name",
 			"board",
 			"playerDisplay",
 			"fpsTime",
@@ -335,27 +349,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "changelog",
+					"file": "3chess.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1263,
+						"buffer_size": 30478,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16,
-								16
+								23634,
+								23634
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 8240.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -363,19 +379,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": ".git/MERGE_MSG",
+					"file": "changelog",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 286,
+						"buffer_size": 1333,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								105,
+								105
 							]
 						],
 						"settings":

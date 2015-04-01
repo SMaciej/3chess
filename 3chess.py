@@ -5,6 +5,7 @@ import pygame
 import sys
 import random
 import pickle
+import time
 from pygame.locals import *
 
 
@@ -464,6 +465,47 @@ class Console(object):
         # playerDisplay.blit(self.console9 , (965, 685))
         # playerDisplay.blit(self.console10 , (965, 695))
 
+    def saveGame(self):
+        """Save game to file."""
+
+        pickle.dump(history, open('games/%s' % time.strftime("%c").replace(' ', '').replace(':', '') , 'wb'))
+
+    def loadGame(self, name):
+        """Load game from file."""
+
+
+
+        history = pickle.load(open(name, 'rb'))
+
+        for entry in history:
+
+            # Check if there was a capturing
+            if entry.split()[3] == ld[lang]['killed']: # Check if the last entry in history was about capturing.
+
+                for chessman in chessmen_list:
+                    if entry.split()[7][0:2] == chessman.square and chessman.state == 'idle': # Find our attacker.
+                        for i in square:
+                            if square[i][2] == entry.split()[2]:
+                                chessman.move(square[i][1], entry.split()[2]) # Move the attacker to the previous position.
+                        break
+
+                for i in square:
+                    if square[i][2] == entry.split()[7][0:2]:
+                        chessman = killed_chessmen.pop() # Take the last captured chessman from list.
+                        chessman.move(square[i][1], entry.split()[7][0:2]) # Move it to the previous position.
+                        chessman.state = 'idle'
+
+            else:
+                for chessman in chessmen_list:
+                    if entry.split()[4][0:2] == chessman.square: # Find which chessman was moved.
+                        for i in square:
+                            if square[i][2] == entry.split()[2]:
+                                chessman.move(square[i][1], entry.split()[2]) # Move it to the previous location.
+                                break
+            return
+
+
+
 class Interface(object):
     """User interface."""
 
@@ -473,6 +515,8 @@ class Interface(object):
     def mainInterface(self):
         """Create main user interface."""
 
+        self.interface = 'main'
+        playerDisplay.fill(grey)
         self.title = Caption(res_x/1.368929293, res_y/38.4, 'PyChess', res_y/12, white)
         self.options_button = Button(1080, 500, 'Options', int(res_y/24), white, 165, 50)
         self.undo_button = Button(930, 500, 'Undo', int(res_y/24), white, 130, 50)
@@ -480,6 +524,8 @@ class Interface(object):
     def optionsInterface(self):
         """Create options interface."""
 
+        self.interface = 'options'
+        playerDisplay.fill(grey)
         self.title = Caption(res_x/1.358929293, res_y/38.4, 'Options', res_y/12, white)
         self.save_button = Button(955, 150, 'Save', int(res_y/24), white, 265, 50)
         self.load_button = Button(955, 225, 'Load', int(res_y/24), white, 265, 50)
@@ -488,10 +534,11 @@ class Interface(object):
         self.back_button = Button(955, 450, 'Back', int(res_y/24), white, 265, 50)
 
 
+
 class Button(Interface):
     """Create single button."""
 
-    def __init__(self, x, y, caption, text_size, colour, size_x, size_y):
+    def __init__(self ,x, y, caption, text_size, colour, size_x, size_y):
         self.x = x
         self.y = y
         self.size_x = size_x
@@ -503,7 +550,7 @@ class Button(Interface):
 
     def checkClick(self, mouse_pos):
         """Check if the button was clicked."""
-        if mouse_pos > (self.x, self.y) and mouse_pos < (self.x + self.size_x, self.y + self.size_y):
+        if mouse_pos[0] > self.x and mouse_pos[1] > self.y and mouse_pos[0] < self.x + self.size_x and mouse_pos[1] < self.y + self.size_y:
             return True
 
 class Caption(Interface):
@@ -539,17 +586,18 @@ def runGame():
                     mouseClick(square[i][1], square[i][2])
                     break
             except:
-                if pygame.mouse.get_pressed()[0] == True and history and user_interface.undo_button.checkClick(mpos):
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'main' and history and user_interface.undo_button.checkClick(mpos):
                     undoMove()
                     break
-                # if pygame.mouse.get_pressed()[0] == True and user_interface.options_button.checkClick(mpos):
-                #     del user_interface
-                #     user_interface = Interface('options')
-                #     break
-                # if pygame.mouse.get_pressed()[0] == True and user_interface.back_button.checkClick(mpos):
-                #     del user_interface
-                #     user_interface = Interface('main')
-                #     break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'main' and user_interface.options_button.checkClick(mpos):
+                    user_interface.optionsInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.back_button.checkClick(mpos):
+                    user_interface.mainInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.save_button.checkClick(mpos):
+                    console.saveGame()
+                    break
 
 
         # Debug mode:
@@ -582,6 +630,7 @@ def runGame():
 while True: 
 
     fpsTime = pygame.time.Clock() # Set fps.
+    fpsTime.tick(fps)
     playerDisplay = pygame.display.set_mode((res_x,res_y)) 
     debugDisplay = pygame.display.set_mode((res_x,res_y))
     playerDisplay.fill(grey)
