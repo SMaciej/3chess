@@ -82,6 +82,17 @@
 				"buffer_size": 1263,
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"contents": "Merge branch 'master' of https://github.com/SMaciej/3chess\n\n# Please enter a commit message to explain why this merge is necessary,\n# especially if it merges an updated upstream into a topic branch.\n#\n# Lines starting with '#' will be ignored, and an empty message aborts\n# the commit.\n",
+			"file": ".git/MERGE_MSG",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 286,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "",
@@ -133,6 +144,7 @@
 	],
 	"file_history":
 	[
+		"/home/maciej/Copy/Development/Projects/3chess/.git/COMMIT_EDITMSG",
 		"/home/maciej/Copy/Development/Projects/3chess/3chess.py",
 		"/home/maciej/Development/Projects/3chess/changelog",
 		"/home/maciej/Copy Decrypted/Development/Projects/3chess/README.md",
@@ -318,7 +330,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -334,8 +346,36 @@
 						"selection":
 						[
 							[
-								50,
-								50
+								16,
+								16
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".git/MERGE_MSG",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
