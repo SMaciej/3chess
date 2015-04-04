@@ -1,6 +1,12 @@
 3chess changelog
 Maciej Sobolewski
 
+
+Version 0.2.5
+Date: 04.04.2015
+- Undo bug fixed.
+- Basic save game functionality fully working.
+
 Version 0.2.4
 Date: 01.04.2015
 - Basic save game functionality added.

@@ -1,5 +1,6 @@
 TO DO:
 - interfejs,
-- menu,
 - sprawdzanie, czy ruch jest dozwolony,
-- cofanie ruchów.
+- nowa gra,
+- bardziej elegancka obsługa języków,
+- główna, globalna klasa (?).
