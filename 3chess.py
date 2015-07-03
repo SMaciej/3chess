@@ -592,7 +592,7 @@ class Interface(object):
 class Button(Interface):
     """Create single button."""
 
-    def __init__(self ,x, y, caption, text_size, colour, size_x, size_y, interface, action):
+    def __init__(self ,x, y, caption, text_size, colour, size_x, size_y):
         self.x = x
         self.y = y
         self.size_x = size_x
@@ -600,8 +600,6 @@ class Button(Interface):
         pygame.draw.rect(playerDisplay, colour, (x, y, size_x, size_y), 2)
         self.button_font = pygame.font.SysFont("Verdana", text_size)
         self.text = self.button_font.render(caption, 1, colour)
-        self.intrfce = interface
-        self.function = action
         playerDisplay.blit(self.text, (x + res_x/200, y + (res_y/192)))
 
     def checkClick(self, mouse_pos):
