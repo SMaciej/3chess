@@ -9,4 +9,4 @@ What is it?
 
 Requirements:
 ======
-All you need is Python 2.7 installed on your computer. You can run the game by executing "3chess.py" file.
+You will need Python 2.7 with "pygame", "pickle" and "random" module installed. You can run the game by executing "3chess.py" file.

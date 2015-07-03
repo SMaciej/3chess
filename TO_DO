@@ -3,4 +3,7 @@ TO DO:
 - sprawdzanie, czy ruch jest dozwolony,
 - nowa gra,
 - bardziej elegancka obsługa języków,
-- główna, globalna klasa (?).
+- główna, globalna klasa (?),
+- ładniejsze ld[lang][...],
+- ładniejsza fabryka pionków,
+- historia.

@@ -1,4 +1,5 @@
 # 3chess
+# -*- coding: UTF-8 -*-
 # by Maciej Sobolewski
 
 import pygame
@@ -20,15 +21,16 @@ grey = (89,99,99)
 # Globals definitions:
 fps = 25
 res_x = 1280
-res_y = 900
+res_y = 960
 debug_mode = True
-lang = 'english'
+lang = 'polish'
 square = {} # Definitions of the board's squares.
 alphabet_codes = {1:'A', 2:'B', 3:'C', 4:'D', 5:'E', 6:'F', 7:'G', 8:'H', 9:'I', 10:'J', 11:'K', 12:'L'}
 chosen = False  # False, when there is no chessman chosen.
 history = []  # History of moves.
 chessmen_list = []  # Chessmen list.
 killed_chessmen = [] # Captured chessmen list.
+out = ''
 
 
 # Functions definitions:
@@ -43,21 +45,23 @@ def newGame():
     history = []  # History of moves.
     chessmen_list = []  # Chessmen list.
     killed_chessmen = [] # Captured chessmen list.
+    out = ''
 
     defineLanguages() # Define language dictionaries.
     testResolutionConfig() # Config resoultion.
     createChessmen() # Create chessmen.
 
 def defineLanguages():
-    """Defines language dictionaries."""
+    """Defines language dictionaries. TO IMPROVE (Language files)."""
 
     global ld, turn
 
     ld = {
-        'english': {'white':'white', 'crimson':'crimson', 'green':'green', 'pawn':'pawn', 'knight':'knight', 'bishop':'bishop', 'rook':'rook', 'queen':'queen', 'king':'king', 'to':'to', 'killed':'captures', 'on':'on', 'its':"It's", 'turn':'turn', 'start':'Start.', 'prevTurn':'Moving to previous turn.'}
+        'english': {'white':'white', 'crimson':'crimson', 'green':'green', 'pawn':'pawn', 'knight':'knight', 'bishop':'bishop', 'rook':'rook', 'queen':'queen', 'king':'king', 'to':'to', 'killed':'captures', 'on':'on', 'its':"It's", 'turn':'turn', 'start':'Start.', 'prevTurn':'Moving to previous turn.', 'resolution':'Resolution', 'options': 'Options', 'language':'Language', 'back':'Back', 'undo':'Undo', 'save':'Save', 'load':'Load', 'english': 'English', 'polish':'Polish'},
+        'polish': {'white':'bialy', 'crimson':'czerwony', 'green':'zielony', 'pawn':'pionek', 'knight':'skoczek', 'bishop':'goniec', 'rook':'wieza', 'queen':'dama', 'king':'krol', 'to':'do', 'killed':'zbija', 'on':'na', 'its':"Gracz", 'turn':'wykonuje ruch', 'start':'Start.', 'prevTurn':'Cofam ture.', 'resolution':'Rozdzielczosc', 'options': 'Opcje', 'language':'Jezyk', 'back':'Wstecz', 'undo':'Cofnij', 'save':'Zapisz', 'load':'Wczytaj', 'english': 'Angielski', 'polish':'Polski'}
     }
 
-    turn = ld[lang]['white'] # Set first turn.
+    turn = 'white' # Set first turn.
 
 def testResolutionConfig():
     """Checks if config for actual resolution was set. If not, generates it."""
@@ -73,58 +77,58 @@ def testResolutionConfig():
         print 'Res config file generated.'
 
 def createChessmen():
-    """Creates chessmen."""
+    """Creates chessmen. TO IMPROVE (Factory type class generator)."""
 
-    pawng1 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'L11')
-    pawng2 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'K11')
-    pawng3 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'J11')
-    pawng4 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'I11')
-    pawng5 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'E11')
-    pawng6 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'F11')
-    pawng7 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'G11')
-    pawng8 = Chessman(ld[lang]['green'], ld[lang]['pawn'], 'img/chessmen/pawng.png', 'H11')
-    rookg1 = Chessman(ld[lang]['green'], ld[lang]['rook'], 'img/chessmen/rookg.png', 'L12')
-    rookg2 = Chessman(ld[lang]['green'], ld[lang]['rook'], 'img/chessmen/rookg.png', 'H12')
-    knightg1 = Chessman(ld[lang]['green'], ld[lang]['knight'], 'img/chessmen/knightg.png', 'K12')
-    knightg2 = Chessman(ld[lang]['green'], ld[lang]['knight'], 'img/chessmen/knightg.png', 'G12')
-    bishopg1 = Chessman(ld[lang]['green'], ld[lang]['bishop'], 'img/chessmen/bishopg.png', 'F12')
-    bishopg2 = Chessman(ld[lang]['green'], ld[lang]['bishop'], 'img/chessmen/bishopg.png', 'J12')
-    queeng = Chessman(ld[lang]['green'], ld[lang]['queen'], 'img/chessmen/queeng.png', 'E12')
-    kingg = Chessman(ld[lang]['green'], ld[lang]['king'], 'img/chessmen/kingg.png', 'I12')
+    pawng1 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'L11')
+    pawng2 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'K11')
+    pawng3 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'J11')
+    pawng4 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'I11')
+    pawng5 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'E11')
+    pawng6 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'F11')
+    pawng7 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'G11')
+    pawng8 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'H11')
+    rookg1 = Chessman('green', 'rook', 'img/chessmen/rookg.png', 'L12')
+    rookg2 = Chessman('green', 'rook', 'img/chessmen/rookg.png', 'H12')
+    knightg1 = Chessman('green', 'knight', 'img/chessmen/knightg.png', 'K12')
+    knightg2 = Chessman('green', 'knight', 'img/chessmen/knightg.png', 'G12')
+    bishopg1 = Chessman('green', 'bishop', 'img/chessmen/bishopg.png', 'F12')
+    bishopg2 = Chessman('green', 'bishop', 'img/chessmen/bishopg.png', 'J12')
+    queeng = Chessman('green', 'queen', 'img/chessmen/queeng.png', 'E12')
+    kingg = Chessman('green', 'king', 'img/chessmen/kingg.png', 'I12')
 
-    pawnw1 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'A2')
-    pawnw2 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'B2')
-    pawnw3 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'C2')
-    pawnw4 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'D2')
-    pawnw5 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'E2')
-    pawnw6 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'F2')
-    pawnw7 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'G2')
-    pawnw8 = Chessman(ld[lang]['white'], ld[lang]['pawn'], 'img/chessmen/pawnw.png', 'H2')
-    rookw1 = Chessman(ld[lang]['white'], ld[lang]['rook'], 'img/chessmen/rookw.png', 'A1')
-    rookw2 = Chessman(ld[lang]['white'], ld[lang]['rook'], 'img/chessmen/rookw.png', 'H1')
-    knightw1 = Chessman(ld[lang]['white'], ld[lang]['knight'], 'img/chessmen/knightw.png', 'B1')
-    knightw2 = Chessman(ld[lang]['white'], ld[lang]['knight'], 'img/chessmen/knightw.png', 'G1')
-    bishopw1 = Chessman(ld[lang]['white'], ld[lang]['bishop'], 'img/chessmen/bishopw.png', 'C1')
-    bishopw2 = Chessman(ld[lang]['white'], ld[lang]['bishop'], 'img/chessmen/bishopw.png', 'F1')
-    queenw = Chessman(ld[lang]['white'], ld[lang]['queen'], 'img/chessmen/queenw.png', 'D1')
-    kingw = Chessman(ld[lang]['white'], ld[lang]['king'], 'img/chessmen/kingw.png', 'E1')
+    pawnw1 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'A2')
+    pawnw2 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'B2')
+    pawnw3 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'C2')
+    pawnw4 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'D2')
+    pawnw5 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'E2')
+    pawnw6 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'F2')
+    pawnw7 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'G2')
+    pawnw8 = Chessman('white', 'pawn', 'img/chessmen/pawnw.png', 'H2')
+    rookw1 = Chessman('white', 'rook', 'img/chessmen/rookw.png', 'A1')
+    rookw2 = Chessman('white', 'rook', 'img/chessmen/rookw.png', 'H1')
+    knightw1 = Chessman('white', 'knight', 'img/chessmen/knightw.png', 'B1')
+    knightw2 = Chessman('white', 'knight', 'img/chessmen/knightw.png', 'G1')
+    bishopw1 = Chessman('white', 'bishop', 'img/chessmen/bishopw.png', 'C1')
+    bishopw2 = Chessman('white', 'bishop', 'img/chessmen/bishopw.png', 'F1')
+    queenw = Chessman('white', 'queen', 'img/chessmen/queenw.png', 'D1')
+    kingw = Chessman('white', 'king', 'img/chessmen/kingw.png', 'E1')
 
-    pawnr1 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'A7')
-    pawnr2 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'B7')
-    pawnr3 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'C7')
-    pawnr4 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'D7')
-    pawnr5 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'I7')
-    pawnr6 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'J7')
-    pawnr7 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'K7')
-    pawnr8 = Chessman(ld[lang]['crimson'], ld[lang]['pawn'], 'img/chessmen/pawnr.png', 'L7')
-    rookr1 = Chessman(ld[lang]['crimson'], ld[lang]['rook'], 'img/chessmen/rookr.png', 'A8')
-    rookr2 = Chessman(ld[lang]['crimson'], ld[lang]['rook'], 'img/chessmen/rookr.png', 'L8')
-    knightr1 = Chessman(ld[lang]['crimson'], ld[lang]['knight'], 'img/chessmen/knightr.png', 'B8')
-    knightr2 = Chessman(ld[lang]['crimson'], ld[lang]['knight'], 'img/chessmen/knightr.png', 'K8')
-    bishopr1 = Chessman(ld[lang]['crimson'], ld[lang]['bishop'], 'img/chessmen/bishopr.png', 'J8')
-    bishopr2 = Chessman(ld[lang]['crimson'], ld[lang]['bishop'], 'img/chessmen/bishopr.png', 'C8')
-    queenr = Chessman(ld[lang]['crimson'], ld[lang]['queen'], 'img/chessmen/queenr.png', 'I8')
-    kingr = Chessman(ld[lang]['crimson'], ld[lang]['king'], 'img/chessmen/kingr.png', 'D8')
+    pawnr1 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'A7')
+    pawnr2 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'B7')
+    pawnr3 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'C7')
+    pawnr4 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'D7')
+    pawnr5 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'I7')
+    pawnr6 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'J7')
+    pawnr7 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'K7')
+    pawnr8 = Chessman('crimson', 'pawn', 'img/chessmen/pawnr.png', 'L7')
+    rookr1 = Chessman('crimson', 'rook', 'img/chessmen/rookr.png', 'A8')
+    rookr2 = Chessman('crimson', 'rook', 'img/chessmen/rookr.png', 'L8')
+    knightr1 = Chessman('crimson', 'knight', 'img/chessmen/knightr.png', 'B8')
+    knightr2 = Chessman('crimson', 'knight', 'img/chessmen/knightr.png', 'K8')
+    bishopr1 = Chessman('crimson', 'bishop', 'img/chessmen/bishopr.png', 'J8')
+    bishopr2 = Chessman('crimson', 'bishop', 'img/chessmen/bishopr.png', 'C8')
+    queenr = Chessman('crimson', 'queen', 'img/chessmen/queenr.png', 'I8')
+    kingr = Chessman('crimson', 'king', 'img/chessmen/kingr.png', 'D8')
 
 def findSquaresCoordOld():
     """THAT WAS AN EXPERIMENTAL FUNCTION THAT DEGRADED PERFORMANCE. Defines square codes. Finds and assigns squares coordinates."""
@@ -149,7 +153,7 @@ def findSquaresCoordOld():
         x += 3
 
 def findSquaresCoord():
-    """Defines square codes. Finds and assigns squares coordinates."""
+    """Defines square codes. Finds and assigns squares coordinates. TO IMPROVE. """
 
     for l, i in ((c,d) for c in range(1, 13) for d in range(1, 13)): # Iterate through all the possible squares (A1, A2, ..., L12 etc.).
         square[alphabet_codes[l] + str(i)] = [str((l*10, i*10, 0, 255)),None,alphabet_codes[l] + str(i)] # First place in this list is for a colour, second is reserved for a position, third one is just a name.
@@ -274,8 +278,6 @@ def loadSquare(name = 'res_conf/' + str(res_x) + 'x' + str(res_y) + '.res'):
 
     square = pickle.load(open(name, 'rb'))
 
-
-
 def mouseClick(square, symbol):
     """Defines action for a left mouse click."""
 
@@ -354,13 +356,13 @@ def nextTurn():
 
     global turn
 
-    if turn == ld[lang]['white']:
-       turn = ld[lang]['crimson']
-    elif turn == ld[lang]['crimson']:
-       turn = ld[lang]['green']
-    elif turn == ld[lang]['green']:
-       turn = ld[lang]['white']
-    print '%s %s %s.' % (ld[lang]['its'], turn, ld[lang]['turn'])
+    if turn == 'white':
+       turn = 'crimson'
+    elif turn == 'crimson':
+       turn = 'green'
+    elif turn == 'green':
+       turn = 'white'
+    print '%s %s %s.' % (ld[lang]['its'], ld[lang][turn], ld[lang]['turn'])
 
     return
 
@@ -369,13 +371,13 @@ def prevTurn():
 
     global turn
 
-    if turn == ld[lang]['white']:
-       turn = ld[lang]['green']
-    elif turn == ld[lang]['crimson']:
-       turn = ld[lang]['white']
-    elif turn == ld[lang]['green']:
-       turn = ld[lang]['crimson']
-    print '%s %s %s %s.' % (ld[lang]['prevTurn'], ld[lang]['its'], turn, ld[lang]['turn'])
+    if turn == 'white':
+       turn = 'green'
+    elif turn == 'crimson':
+       turn = 'white'
+    elif turn == 'green':
+       turn = 'crimson'
+    print '%s %s %s %s.' % (ld[lang]['prevTurn'], ld[lang]['its'], ld[lang][turn], ld[lang]['turn'])
 
     return
 
@@ -401,7 +403,7 @@ class Game(object):
         """Display board stuff:"""
 
         playerDisplay.blit(board, (0,0))
-        pygame.draw.rect(playerDisplay, black, (res_x/1.422222222, res_y/1.6, res_x/3.282051282, res_y/2.642857143))
+        pygame.draw.rect(playerDisplay, black, (res_y, res_y/1.6, 400, res_y/2.642857143))
 
     def redrawChessmen(self):
         """Redraws all chessmen on the board."""
@@ -496,11 +498,11 @@ class Chessman(object):
                 chessman.state = 'idle'
                 chessman.changeImage(chessman.graphic)
 
-        if self.colour == turn:   # Check, if the chosen one is own by the actual player.
-            out = '%s %s %s ' % (str.capitalize(self.colour), self.type, self.square)
+        if self.colour == turn:   # Check, if the chosen one is owned by the actual player.
+            out = '%s %s %s ' % (str.capitalize(ld[lang][self.colour]), ld[lang][self.type], self.square)
             self.state = 'chosen'
             chosen = True
-            self.changeImage('img/chessmen/chosen_' + self.type + '.png')
+            self.changeImage(self.graphic[:-5] + '_chosen.png')
         return
 
     def move(self, position, symbol):
@@ -520,7 +522,7 @@ class Chessman(object):
         game.redrawChessmen()
         self.state = 'killed'
         killed_chessmen.append(self)
-        out += '%s %s %s ' % (ld[lang]['killed'], self.colour, self.type)
+        out += '%s %s %s ' % (ld[lang]['killed'], ld[lang][self.colour], ld[lang][self.type])
 
     def changeImage(self, image):
         """Changes chessman image file."""
@@ -539,21 +541,21 @@ class Interface(object):
 
         self.interface = 'main'
         playerDisplay.fill(grey)
-        self.title = Caption(res_x/1.368929293, res_y/38.4, 'PyChess', res_y/12, white)
-        self.options_button = Button(1080, 500, 'Options', int(res_y/24), white, 165, 50)
-        self.undo_button = Button(930, 500, 'Undo', int(res_y/24), white, 130, 50)
+        self.title = Caption(res_y + (res_x/67.368421053), res_y/38.4, 'PyChess', res_y/14, white)
+        self.options_button = Button(res_y + (res_x/7.529411765), res_y/1.8, ld[lang]['options'], int(res_y/32), white, 130, 50)
+        self.undo_button = Button(res_y + (res_x/67.368421053), res_y/1.8, ld[lang]['undo'], int(res_y/32), white, 130, 50)
 
     def optionsInterface(self):
         """Create options interface."""
 
         self.interface = 'options'
         playerDisplay.fill(grey)
-        self.title = Caption(res_x/1.358929293, res_y/38.4, 'Options', res_y/12, white)
-        self.save_button = Button(955, 150, 'Save', int(res_y/24), white, 265, 50)
-        self.load_button = Button(955, 225, 'Load', int(res_y/24), white, 265, 50)
-        self.resolution_button = Button(955, 300, 'Resolution', int(res_y/24), white, 265, 50)
-        self.language_button = Button(955, 375, 'Language', int(res_y/24), white, 265, 50)
-        self.back_button = Button(955, 450, 'Back', int(res_y/24), white, 265, 50)
+        self.title = Caption(res_y + (res_x/67.368421053), res_y/38.4, ld[lang]['options'], res_y/14, white)
+        self.save_button = Button(res_y + (res_x/67.368421053), res_y/6, ld[lang]['save'], int(res_y/32), white, 265, 50)
+        self.load_button = Button(res_y + (res_x/67.368421053), res_y/4, ld[lang]['load'], int(res_y/32), white, 265, 50)
+        self.resolution_button = Button(res_y + (res_x/67.368421053), res_y/3, ld[lang]['resolution'], int(res_y/32), white, 265, 50)
+        self.language_button = Button(res_y + (res_x/67.368421053), res_y/2.4, ld[lang]['language'], int(res_y/32), white, 265, 50)
+        self.back_button = Button(res_y + (res_x/67.368421053), res_y/2, ld[lang]['back'], int(res_y/32), white, 265, 50)
 
     def loadInterface(self):
         """Create interface to load a game."""
@@ -562,10 +564,35 @@ class Interface(object):
         playerDisplay.fill(grey)
         self.title = Caption(res_x/1.358929293, res_y/38.4, 'Load', res_y/12, white)
 
+    def resolutionInterface(self):
+        """Create interface to change the resolution"""
+
+        self.interface = 'resolution'
+        playerDisplay.fill(grey)
+        self.title = Caption(res_y + (res_x/67.368421053), res_y/38.4, ld[lang]['resolution'], res_y/18, white)
+        self.res1_button = Button(res_y + (res_x/67.368421053), res_y/6, 'res1', int(res_y/32), white, 265, 50)
+        self.res2_button = Button(res_y + (res_x/67.368421053), res_y/4, 'res2', int(res_y/32), white, 265, 50)
+        self.res3_button = Button(res_y + (res_x/67.368421053), res_y/3, 'res3', int(res_y/32), white, 265, 50)
+        self.res4_button = Button(res_y + (res_x/67.368421053), res_y/2.4, 'res4', int(res_y/32), white, 265, 50)
+        self.back_button = Button(res_y + (res_x/67.368421053), res_y/2, ld[lang]['back'], int(res_y/32), white, 265, 50)
+
+    def languageInterface(self):
+        """Create interface to change the resolution"""
+
+        self.interface = 'language'
+        playerDisplay.fill(grey)
+        self.title = Caption(res_y + (res_x/67.368421053), res_y/38.4, ld[lang]['language'], res_y/18, white)
+        self.lang1_button = Button(res_y + (res_x/67.368421053), res_y/6, ld[lang]['english'], int(res_y/32), white, 265, 50)
+        self.lang2_button = Button(res_y + (res_x/67.368421053), res_y/4, ld[lang]['polish'], int(res_y/32), white, 265, 50)
+        self.lang3_button = Button(res_y + (res_x/67.368421053), res_y/3, 'res3', int(res_y/32), white, 265, 50)
+        self.lang4_button = Button(res_y + (res_x/67.368421053), res_y/2.4, 'res4', int(res_y/32), white, 265, 50)
+        self.back_button = Button(res_y + (res_x/67.368421053), res_y/2, ld[lang]['back'], int(res_y/32), white, 265, 50)
+
+
 class Button(Interface):
     """Create single button."""
 
-    def __init__(self ,x, y, caption, text_size, colour, size_x, size_y):
+    def __init__(self ,x, y, caption, text_size, colour, size_x, size_y, interface, action):
         self.x = x
         self.y = y
         self.size_x = size_x
@@ -573,7 +600,9 @@ class Button(Interface):
         pygame.draw.rect(playerDisplay, colour, (x, y, size_x, size_y), 2)
         self.button_font = pygame.font.SysFont("Verdana", text_size)
         self.text = self.button_font.render(caption, 1, colour)
-        playerDisplay.blit(self.text, (x+res_x/100, y))
+        self.intrfce = interface
+        self.function = action
+        playerDisplay.blit(self.text, (x + res_x/200, y + (res_y/192)))
 
     def checkClick(self, mouse_pos):
         """Check if the button was clicked."""
@@ -593,6 +622,8 @@ class Caption(Interface):
 # Main function:
 def runGame():
     """ Start game. """
+
+    global lang
 
     while True:
         
@@ -622,11 +653,29 @@ def runGame():
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.back_button.checkClick(mpos):
                     user_interface.mainInterface()
                     break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'resolution' and user_interface.back_button.checkClick(mpos):
+                    user_interface.mainInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.resolution_button.checkClick(mpos):
+                    user_interface.resolutionInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.language_button.checkClick(mpos):
+                    user_interface.languageInterface()
+                    break
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.save_button.checkClick(mpos):
                     game.saveGame()
                     break
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.load_button.checkClick(mpos):
                     game.loadGame()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.lang1_button.checkClick(mpos):
+                    lang = 'english'
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.lang2_button.checkClick(mpos):
+                    lang = 'polish'
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.back_button.checkClick(mpos):
+                    user_interface.mainInterface()
                     break
 
 
@@ -662,13 +711,12 @@ while True:
     board = pygame.transform.scale(board, (res_y, res_y)) # Scale board image file.
     board_colour = pygame.transform.scale(board_colour, (res_y, res_y)) # Scale colour board image file.
     
+    # Run new game function:
+    newGame()
 
     # Create main objects:
     user_interface = Interface('main')
     game = Game()
-
-    # Run new game function:
-    newGame()
 
     # Run main loop:
     runGame()
