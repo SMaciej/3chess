@@ -11,5 +11,4 @@ What is it?
 Requirements:
 ======
 You will need Python 2.7 with "pygame", "pickle" and "random" module installed. You can run the game by executing "3chess.py" file.
-=======
 
