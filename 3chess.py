@@ -30,7 +30,8 @@ chosen = False  # False, when there is no chessman chosen.
 history = []  # History of moves.
 chessmen_list = []  # Chessmen list.
 killed_chessmen = [] # Captured chessmen list.
-out = ''
+ld = {} # Language dictionary.
+out = '' # Console output.
 
 
 # Functions definitions:
@@ -42,7 +43,7 @@ def newGame():
 
     square = {} # Definitions of the board's squares.
     chosen = False  # False, when there is no chessman chosen.
-    history = []  # History of moves.
+    history = ['','','','','','','','','','','','','', '']  # History of moves.
     chessmen_list = []  # Chessmen list.
     killed_chessmen = [] # Captured chessmen list.
     out = ''
@@ -51,20 +52,64 @@ def newGame():
     testResolutionConfig() # Config resoultion.
     createChessmen() # Create chessmen.
 
+def readOptionsFile():
+    """Reads settings in options file."""
+
+    global res_x, res_y, lang
+
+    settings = open('options.cfg', 'rb')
+    options = settings.readlines()
+    res_x = int(options[0])
+    res_y = int(options[1])
+    lang = options[2]
+    settings.close()
+
 def defineLanguages():
-    """Defines language dictionaries. TO IMPROVE (Language files)."""
+    """Reads language dictionaries from 'lang.cfg' file."""
 
     global ld, turn
 
-    ld = {
-        'english': {'white':'white', 'crimson':'crimson', 'green':'green', 'pawn':'pawn', 'knight':'knight', 'bishop':'bishop', 'rook':'rook', 'queen':'queen', 'king':'king', 'to':'to', 'killed':'captures', 'on':'on', 'its':"It's", 'turn':'turn', 'start':'Start.', 'prevTurn':'Moving to previous turn.', 'resolution':'Resolution', 'options': 'Options', 'language':'Language', 'back':'Back', 'undo':'Undo', 'save':'Save', 'load':'Load', 'english': 'English', 'polish':'Polish'},
-        'polish': {'white':'bialy', 'crimson':'czerwony', 'green':'zielony', 'pawn':'pionek', 'knight':'skoczek', 'bishop':'goniec', 'rook':'wieza', 'queen':'dama', 'king':'krol', 'to':'do', 'killed':'zbija', 'on':'na', 'its':"Gracz", 'turn':'wykonuje ruch', 'start':'Start.', 'prevTurn':'Cofam ture.', 'resolution':'Rozdzielczosc', 'options': 'Opcje', 'language':'Jezyk', 'back':'Wstecz', 'undo':'Cofnij', 'save':'Zapisz', 'load':'Wczytaj', 'english': 'Angielski', 'polish':'Polski'}
-    }
+    # Create dictionaries
+    ld['english'] = {}
+    ld['polish'] = {}
+
+    # Open languages file.
+    lang = open('lang.cfg', 'rd')
+
+    # Add each entry into a dictionary.
+    for entry in lang:
+        ld['english'][entry.split()[0]] = entry.split()[1]
+        ld['polish'][entry.split()[0]] = entry.split()[2]
+
+    # Replace each '_' with a space.
+    for language in ld:
+        for item in ld[language]:
+            ld[language][item] = ld[language][item].replace('_', ' ')
 
     turn = 'white' # Set first turn.
 
+def changeLanguage(language):
+    """Changes game language."""
+
+    global lang
+
+    lang = language
+    options = open('options.cfg', 'wb')
+    options.write('%s\n%s\n%s' % (res_x, res_y, lang))
+    options.close()
+
+def changeResolution(x, y):
+    """Changes game resolution."""
+
+    options = open('options.cfg', 'wb')
+    options.write('%s\n%s\n%s' % (x, y, lang))
+    options.close()
+
 def testResolutionConfig():
     """Checks if config for actual resolution was set. If not, generates it."""
+
+    print res_x
+    print res_y
 
     try: 
         test = open('res_conf/' + str(res_x) + 'x' + str(res_y) + '.res', 'r')
@@ -77,7 +122,8 @@ def testResolutionConfig():
         print 'Res config file generated.'
 
 def createChessmen():
-    """Creates chessmen. TO IMPROVE (Factory type class generator)."""
+    """Creates chessmen."""
+    # It's ugly. Change it somehow.
 
     pawng1 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'L11')
     pawng2 = Chessman('green', 'pawn', 'img/chessmen/pawng.png', 'K11')
@@ -153,8 +199,12 @@ def findSquaresCoordOld():
         x += 3
 
 def findSquaresCoord():
-    """Defines square codes. Finds and assigns squares coordinates. TO IMPROVE. """
+    """Defines square codes. Finds and assigns squares coordinates."""
+    # Even uglier than createChessmen. Change it for sure.
 
+    global square
+
+    # Define each square.
     for l, i in ((c,d) for c in range(1, 13) for d in range(1, 13)): # Iterate through all the possible squares (A1, A2, ..., L12 etc.).
         square[alphabet_codes[l] + str(i)] = [str((l*10, i*10, 0, 255)),None,alphabet_codes[l] + str(i)] # First place in this list is for a colour, second is reserved for a position, third one is just a name.
 
@@ -266,16 +316,18 @@ def findSquaresCoord():
     square['K5'][1] = (round(res_y/2.285714286, 0), round(res_y/3.75, 0))
     square['L5'][1] = (round(res_y/2.269503546, 0), round(res_y/4.923076923, 0))
 
-def saveSquare(name = 'res_conf/' + str(res_x) + 'x'+ str(res_y) + '.res'):
+def saveSquare():
     """Saves square to file. Default name is an actual resolution."""
 
+    name = 'res_conf/' + str(res_x) + 'x'+ str(res_y) + '.res'
     pickle.dump(square, open(name, 'wb'))
 
-def loadSquare(name = 'res_conf/' + str(res_x) + 'x' + str(res_y) + '.res'):
+def loadSquare():
     """Loads the square dictionary from a file"""
 
     global square
 
+    name = 'res_conf/' + str(res_x) + 'x' + str(res_y) + '.res'
     square = pickle.load(open(name, 'rb'))
 
 def mouseClick(square, symbol):
@@ -316,8 +368,8 @@ def moveChessman(square, symbol, kill):
             else:
                 out += '%s %s' % (ld[lang]['on'], symbol)
             game.printConsole(out)
-            chessman.changeImage(chessman.graphic) # Change image to default.
             nextTurn()
+            chessman.changeImage(chessman.graphic) # Change image to default.
             return
 
 def undoMove():
@@ -385,22 +437,45 @@ def prevTurn():
 # Classes definitions:
 class Game(object):
     """Main class controling console and game saving/loading."""
+        
+    def setConsole(self):
+        """Sets console display."""
+        # DODAJ JESZCZE PARE BLITOW ORAZ ZMIEN ODLEGLOSCI POMIEDZY LINIJKAMI
 
-    #def __init__(self):
-        # game_font = pygame.font.SysFont("monospace", 15)
-        # self.console1 = console_font.render(history[-1], 1, white)
-        # self.console2 = console_font.render(history[-2], 1, white)
-        # self.console3 = console_font.render(history[-3], 1, white)
-        # self.console4 = console_font.render(history[-4], 1, white)
-        # self.console5 = console_font.render(history[-5], 1, white)
-        # self.console6 = console_font.render(history[-6], 1, white)
-        # self.console7 = console_font.render(history[-7], 1, white)
-        # self.console8 = console_font.render(history[-8], 1, white)
-        # self.console9 = console_font.render(history[-9], 1, white)
-        # self.console10 = console_font.render(history[-10], 1, white)
+        console_font = pygame.font.SysFont("Verdana", int(res_y/69))
+
+        console1 = console_font.render(history[-1], 1, white)
+        console2 = console_font.render(history[-2], 1, white)
+        console3 = console_font.render(history[-3], 1, white)
+        console4 = console_font.render(history[-4], 1, white)
+        console5 = console_font.render(history[-5], 1, white)
+        console6 = console_font.render(history[-6], 1, white)
+        console7 = console_font.render(history[-7], 1, white)
+        console8 = console_font.render(history[-8], 1, white)
+        console9 = console_font.render(history[-9], 1, white)
+        console10 = console_font.render(history[-10], 1, white)
+        console11 = console_font.render(history[-11], 1, white)
+        console12 = console_font.render(history[-12], 1, white)
+        console13 = console_font.render(history[-13], 1, white)
+        console14 = console_font.render(history[-14], 1, white)
+
+        playerDisplay.blit(console1, (0.75390625*res_x, 0.630208333*res_y)) # 605
+        playerDisplay.blit(console2, (0.75390625*res_x, 0.65625*res_y))
+        playerDisplay.blit(console3, (0.75390625*res_x, 0.682291667*res_y))
+        playerDisplay.blit(console4, (0.75390625*res_x, 0.708333333*res_y))
+        playerDisplay.blit(console5, (0.75390625*res_x, 0.734375*res_y))
+        playerDisplay.blit(console6, (0.75390625*res_x, 0.760416667*res_y))
+        playerDisplay.blit(console7, (0.75390625*res_x, 0.786458333*res_y))
+        playerDisplay.blit(console8, (0.75390625*res_x, 0.8125*res_y))
+        playerDisplay.blit(console9, (0.75390625*res_x, 0.838541667*res_y))
+        playerDisplay.blit(console10, (0.75390625*res_x, 0.864583333*res_y))
+        playerDisplay.blit(console11, (0.75390625*res_x, 0.890625*res_y))
+        playerDisplay.blit(console12, (0.75390625*res_x, 0.916666667*res_y))
+        playerDisplay.blit(console13, (0.75390625*res_x, 0.942708333*res_y))
+        playerDisplay.blit(console14, (0.75390625*res_x, 0.96875*res_y))
 
     def displayBoard(self):
-        """Display board stuff:"""
+        """Displays board stuff:"""
 
         playerDisplay.blit(board, (0,0))
         pygame.draw.rect(playerDisplay, black, (res_y, res_y/1.6, 400, res_y/2.642857143))
@@ -413,33 +488,22 @@ class Game(object):
                 playerDisplay.blit(chessman.image, chessman.pos)
 
     def printConsole(self, text):
-        """ Prints text."""
+        """Add new item to history and print text."""
 
         history.append(text)
         print text
 
-        # playerDisplay.blit(self.console1 , (965, 605))
-        # playerDisplay.blit(self.console2 , (965, 615))
-        # playerDisplay.blit(self.console3 , (965, 625))
-        # playerDisplay.blit(self.console4 , (965, 635))
-        # playerDisplay.blit(self.console5 , (965, 645))
-        # playerDisplay.blit(self.console6 , (965, 655))
-        # playerDisplay.blit(self.console7 , (965, 665))
-        # playerDisplay.blit(self.console8 , (965, 675))
-        # playerDisplay.blit(self.console9 , (965, 685))
-        # playerDisplay.blit(self.console10 , (965, 695))
-
     def saveGame(self):
-        """Save game to file."""
+        """Saves game to file."""
 
         #pickle.dump(history, open('games/%s' % time.strftime("%c").replace(' ', '').replace(':', '') , 'wb'))
         pickle.dump(history, open('games/last_game', 'wb')) # Save history to file.
         print 'Game saved.'
 
     def loadGame(self):
-        """Load game from file."""
+        """Loads game from file."""
 
-        global history
+        global history, turn
 
         newGame() # Start new game.
 
@@ -447,29 +511,44 @@ class Game(object):
 
         for entry in history: # Go through history, entry by entry.
 
-            # Check if there was a capturing
-            if entry.split()[3] == ld[lang]['killed']: # Check if the entry in history was about capturing.
+            try:
+                # Check if there was a capturing
+                if entry.split()[3] == ld[lang]['killed']: # Check if the entry in history was about capturing.
 
-                for chessman in chessmen_list:
-                    if entry.split()[7] == chessman.square and chessman.state == 'idle': # Find captured pawn.
-                        for i in square:
-                            if square[i][2] == entry.split()[7]:
-                                chessman.kill(square[i][2]) # Capture pawn.
+                    for chessman in chessmen_list:
+                        if entry.split()[7] == chessman.square and chessman.state == 'idle': # Find captured pawn.
+                            for i in square:
+                                if square[i][2] == entry.split()[7]:
+                                    chessman.kill(square[i][2]) # Capture pawn.
 
-                for chessman in chessmen_list:
-                    if entry.split()[2] == chessman.square and chessman.state == 'idle': # Find our attacker.
-                        for i in square:
-                            if square[i][2] == entry.split()[7]:
-                                chessman.move(square[i][1], entry.split()[7]) # Move the attacker.
-                        break
+                    for chessman in chessmen_list:
+                        if entry.split()[2] == chessman.square and chessman.state == 'idle': # Find our attacker.
+                            for i in square:
+                                if square[i][2] == entry.split()[7]:
+                                    chessman.move(square[i][1], entry.split()[7]) # Move the attacker.
+                            break
 
-            else:
-                for chessman in chessmen_list:
-                    if entry.split()[2] == chessman.square: # Find which chessman was moved.
-                        for i in square:
-                            if square[i][2] == entry.split()[4]:
-                                chessman.move(square[i][1], entry.split()[4]) # Move it to the previous location.
-                                break
+                else:
+                    for chessman in chessmen_list:
+                        if entry.split()[2] == chessman.square: # Find which chessman was moved.
+                            for i in square:
+                                if square[i][2] == entry.split()[4]:
+                                    chessman.move(square[i][1], entry.split()[4]) # Move it to the previous location.
+                                    break
+            except:
+                pass
+
+            # Check whose turn it is.
+            try:
+                if entry.split()[0].lower() == ld[lang]['white']:
+                    turn = 'crimson'
+                elif entry.split()[0].lower() == ld[lang]['crimson']:
+                    turn = 'green'
+                elif entry.split()[0].lower() == ld[lang]['green']:
+                    turn = 'white'
+            except:
+                pass
+
         return
 
 class Chessman(object):
@@ -537,7 +616,7 @@ class Interface(object):
         f = getattr(self, '%sInterface' % type)() # Run function responsible for certain interface.
 
     def mainInterface(self):
-        """Create main user interface."""
+        """Creates main user interface."""
 
         self.interface = 'main'
         playerDisplay.fill(grey)
@@ -546,7 +625,7 @@ class Interface(object):
         self.undo_button = Button(res_y + (res_x/67.368421053), res_y/1.8, ld[lang]['undo'], int(res_y/32), white, 130, 50)
 
     def optionsInterface(self):
-        """Create options interface."""
+        """Creates options interface."""
 
         self.interface = 'options'
         playerDisplay.fill(grey)
@@ -558,39 +637,39 @@ class Interface(object):
         self.back_button = Button(res_y + (res_x/67.368421053), res_y/2, ld[lang]['back'], int(res_y/32), white, 265, 50)
 
     def loadInterface(self):
-        """Create interface to load a game."""
+        """Creates interface to load a game."""
 
         self.interface = 'load'
         playerDisplay.fill(grey)
         self.title = Caption(res_x/1.358929293, res_y/38.4, 'Load', res_y/12, white)
 
     def resolutionInterface(self):
-        """Create interface to change the resolution"""
+        """Creates interface to change the resolution."""
 
         self.interface = 'resolution'
         playerDisplay.fill(grey)
         self.title = Caption(res_y + (res_x/67.368421053), res_y/38.4, ld[lang]['resolution'], res_y/18, white)
-        self.res1_button = Button(res_y + (res_x/67.368421053), res_y/6, 'res1', int(res_y/32), white, 265, 50)
-        self.res2_button = Button(res_y + (res_x/67.368421053), res_y/4, 'res2', int(res_y/32), white, 265, 50)
-        self.res3_button = Button(res_y + (res_x/67.368421053), res_y/3, 'res3', int(res_y/32), white, 265, 50)
-        self.res4_button = Button(res_y + (res_x/67.368421053), res_y/2.4, 'res4', int(res_y/32), white, 265, 50)
+        self.res1_button = Button(res_y + (res_x/67.368421053), res_y/6, '1440x1080', int(res_y/32), white, 265, 50)
+        self.res2_button = Button(res_y + (res_x/67.368421053), res_y/4, '1280x960', int(res_y/32), white, 265, 50)
+        self.res3_button = Button(res_y + (res_x/67.368421053), res_y/3, '1152x864', int(res_y/32), white, 265, 50)
+        #self.res4_button = Button(res_y + (res_x/67.368421053), res_y/2.4, 'res4', int(res_y/32), white, 265, 50)
         self.back_button = Button(res_y + (res_x/67.368421053), res_y/2, ld[lang]['back'], int(res_y/32), white, 265, 50)
 
     def languageInterface(self):
-        """Create interface to change the resolution"""
+        """Creates interface to change the language."""
 
         self.interface = 'language'
         playerDisplay.fill(grey)
         self.title = Caption(res_y + (res_x/67.368421053), res_y/38.4, ld[lang]['language'], res_y/18, white)
         self.lang1_button = Button(res_y + (res_x/67.368421053), res_y/6, ld[lang]['english'], int(res_y/32), white, 265, 50)
         self.lang2_button = Button(res_y + (res_x/67.368421053), res_y/4, ld[lang]['polish'], int(res_y/32), white, 265, 50)
-        self.lang3_button = Button(res_y + (res_x/67.368421053), res_y/3, 'res3', int(res_y/32), white, 265, 50)
-        self.lang4_button = Button(res_y + (res_x/67.368421053), res_y/2.4, 'res4', int(res_y/32), white, 265, 50)
+        #self.lang3_button = Button(res_y + (res_x/67.368421053), res_y/3, 'res3', int(res_y/32), white, 265, 50)
+        #self.lang4_button = Button(res_y + (res_x/67.368421053), res_y/2.4, 'res4', int(res_y/32), white, 265, 50)
         self.back_button = Button(res_y + (res_x/67.368421053), res_y/2, ld[lang]['back'], int(res_y/32), white, 265, 50)
 
 
 class Button(Interface):
-    """Create single button."""
+    """Creates single button."""
 
     def __init__(self ,x, y, caption, text_size, colour, size_x, size_y):
         self.x = x
@@ -603,12 +682,12 @@ class Button(Interface):
         playerDisplay.blit(self.text, (x + res_x/200, y + (res_y/192)))
 
     def checkClick(self, mouse_pos):
-        """Check if the button was clicked."""
+        """Checks if the button was clicked."""
         if mouse_pos[0] > self.x and mouse_pos[1] > self.y and mouse_pos[0] < self.x + self.size_x and mouse_pos[1] < self.y + self.size_y:
             return True
 
 class Caption(Interface):
-    """Create a caption."""
+    """Creates a caption."""
 
     def __init__(self, x, y, caption, text_size, colour):
         self.caption_font = pygame.font.SysFont("Verdana", text_size)
@@ -619,7 +698,7 @@ class Caption(Interface):
 
 # Main function:
 def runGame():
-    """ Start game. """
+    """ Starts game. """
 
     global lang
 
@@ -643,7 +722,10 @@ def runGame():
                     break
             except:
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'main' and history and user_interface.undo_button.checkClick(mpos):
-                    undoMove()
+                    try:
+                        undoMove()
+                    except:
+                        pass
                     break
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'main' and user_interface.options_button.checkClick(mpos):
                     user_interface.optionsInterface()
@@ -652,6 +734,18 @@ def runGame():
                     user_interface.mainInterface()
                     break
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'resolution' and user_interface.back_button.checkClick(mpos):
+                    user_interface.optionsInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'resolution' and user_interface.res1_button.checkClick(mpos):
+                    changeResolution(1440, 1080)
+                    user_interface.mainInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'resolution' and user_interface.res2_button.checkClick(mpos):
+                    changeResolution(1280, 960)
+                    user_interface.mainInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'resolution' and user_interface.res3_button.checkClick(mpos):
+                    changeResolution(1152, 864)
                     user_interface.mainInterface()
                     break
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'options' and user_interface.resolution_button.checkClick(mpos):
@@ -667,15 +761,16 @@ def runGame():
                     game.loadGame()
                     break
                 if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.lang1_button.checkClick(mpos):
-                    lang = 'english'
-                    break
-                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.lang2_button.checkClick(mpos):
-                    lang = 'polish'
-                    break
-                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.back_button.checkClick(mpos):
+                    changeLanguage('english')
                     user_interface.mainInterface()
                     break
-
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.lang2_button.checkClick(mpos):
+                    changeLanguage('polish')
+                    user_interface.mainInterface()
+                    break
+                if pygame.mouse.get_pressed()[0] == True and user_interface.interface == 'language' and user_interface.back_button.checkClick(mpos):
+                    user_interface.optionsInterface()
+                    break
 
         # Debug mode:
         if debug_mode == True:
@@ -685,6 +780,7 @@ def runGame():
 
         # Display stuff:
         game.displayBoard()
+        game.setConsole()
         game.redrawChessmen()
 
         # Update display:
@@ -696,10 +792,11 @@ def runGame():
 while True: 
 
     # Set display and technical details:
+    readOptionsFile()
     fpsTime = pygame.time.Clock() # Set fps.
     fpsTime.tick(fps)
-    playerDisplay = pygame.display.set_mode((res_x,res_y)) 
-    debugDisplay = pygame.display.set_mode((res_x,res_y))
+    playerDisplay = pygame.display.set_mode((res_x, res_y)) 
+    debugDisplay = pygame.display.set_mode((res_x, res_y))
     playerDisplay.fill(grey)
     pygame.display.set_caption('3chess') # Set caption.
 

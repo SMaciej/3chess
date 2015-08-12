@@ -1,12 +1,35 @@
 (lp0
-S'White pawn E2 to E4'
+S''
 p1
-aS'Crimson pawn D7 to D5'
+ag1
+ag1
+ag1
+ag1
+ag1
+ag1
+ag1
+ag1
+ag1
+aS'White pawn D2 to D4'
 p2
-aS'Green pawn E11 to E9'
+aS'Crimson pawn D7 to D5'
 p3
-aS'White pawn E4 captures green pawn on E9'
+aS'Green pawn I11 to I9'
 p4
-aS'Crimson king D8 to D6'
+aS'White pawn D4 to E4'
 p5
+aS'Crimson pawn D5 to I5'
+p6
+aS'Green pawn I9 to J9'
+p7
+aS'White pawn E4 to D4'
+p8
+aS'Crimson pawn J7 to J6'
+p9
+aS'Green pawn J9 to L9'
+p10
+aS'White pawn D4 to E4'
+p11
+aS'Crimson pawn I5 to J5'
+p12
 a.

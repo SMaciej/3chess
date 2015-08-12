@@ -80,10 +80,10 @@
 	"buffers":
 	[
 		{
-			"file": "3chess.py",
+			"file": "/home/maciej/Development/Projects/3chess/3chess.py",
 			"settings":
 			{
-				"buffer_size": 34575,
+				"buffer_size": 37447,
 				"line_ending": "Unix"
 			}
 		}
@@ -154,29 +154,37 @@
 	},
 	"expanded_folders":
 	[
-		"/home/maciej/Copy Decrypted/Development/Projects/3chess"
+		"/home/maciej/Copy/Development/Projects/3chess",
+		"/home/maciej/Copy/Development/Projects/3chess/games",
+		"/home/maciej/Copy/Development/Projects/3chess/img"
 	],
 	"file_history":
 	[
-		"/home/maciej/Copy Decrypted/Development/Projects/3chess/TO_DO",
-		"/home/maciej/Downloads/SU29",
-		"/home/maciej/Downloads/100247250556.sdx",
-		"/home/maciej/Copy Decrypted/Development/Projects/3chess/README.md",
-		"/home/maciej/Copy Decrypted/Development/Projects/3chess/example.py",
-		"/home/maciej/Copy Decrypted/Development/Projects/3chess/eztext.py",
-		"/home/maciej/.i3/config",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/RaportManager.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/Raports.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/AdminPanel.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/TransactionManager.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/PermissionManager.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/UserPanel.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/ImportExport.cs",
+		"/home/maciej/Copy/Development/Projects/3chess/3chess.py",
+		"/home/maciej/Development/Projects/3chess/changelog",
+		"/home/maciej/Development/Projects/3chess/license",
+		"/home/maciej/Development/Projects/3chess/options",
+		"/home/maciej/Development/Projects/3chess/lang",
+		"/home/maciej/Copy/Development/Projects/3chess/.gitignore",
+		"/home/maciej/Development/Projects/3chess/TO_DO",
+		"/home/maciej/Copy/Development/Projects/3chess/TO_DO",
+		"/home/maciej/Copy/Development/Projects/3chess/lang",
+		"/home/maciej/Copy/Development/Projects/3chess/lang.py",
+		"/home/maciej/Development/Projects/3chess/res_conf/1280x960.res",
+		"/home/maciej/Development/Projects/3chess/games/last_game",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/MainScreen.cs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/Main.cs",
-		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/UserManager.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/ImportExport.cs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/User.cs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/Transaction.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/UserPanel.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/UserManager.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/AdminPanel.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/TransactionManager.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/RaportManager.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/PermissionManager.cs",
+		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/DataModels/Raports.cs",
+		"/home/maciej/.i3/config",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/PermissionManager.cs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/ImportExport.cs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/INO/MainScreen.cs",
@@ -244,15 +252,14 @@
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/JPP/drugi.hs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/JPP/przedostatni.hs",
 		"/home/maciej/Copy/Documents/Informatyka Studia/Semestr IV/JPP/potega.hs",
-		"/home/maciej/Copy/Development/Projects/3chess/3chess.py",
-		"/home/maciej/Copy/Development/Projects/3chess/TO_DO",
 		"/home/maciej/Copy/Development/Projects/3chess/changelog",
 		"/home/maciej/Copy/Development/Projects/3chess/.git/COMMIT_EDITMSG",
 		"/home/maciej/Copy/Development/Projects/3chess/example.py",
 		"/home/maciej/Copy/Development/Projects/3chess/eztext.py",
 		"/home/maciej/Copy/Development/Projects/3chess/.git/MERGE_MSG",
-		"/home/maciej/Development/Projects/3chess/changelog",
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess/README.md",
 		"/home/maciej/Copy Decrypted/Development/Projects/3chess/changelog",
+		"/home/maciej/Copy Decrypted/Development/Projects/3chess/TO_DO",
 		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/license",
 		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/changelog",
 		"/home/maciej/Copy Decrypted/Development/Projects/3chess_new/dev_img/colours",
@@ -280,12 +287,7 @@
 		"/home/maciej/Copy/Development/Django/lwc/templates/base.html",
 		"/home/maciej/Copy/Development/Django/lwc/templates/share.html",
 		"/home/maciej/Copy/Development/Django/lwc/lwc/views.py",
-		"/home/maciej/Copy/Development/Django/lwc/templates/donotuse.html",
-		"/home/maciej/Copy/Development/Django/lwc/lwc/urls.py",
-		"/home/maciej/Copy/Development/Django/lwc/templates/home.html",
-		"/home/maciej/Downloads/Snatch (2000)/Snatch.2000.BRRip.txt",
-		"/home/maciej/Downloads/Dostojewski Biesy",
-		"/home/maciej/Downloads/Dostojewski Biesy.txt"
+		"/home/maciej/Copy/Development/Django/lwc/templates/donotuse.html"
 	],
 	"find":
 	{
@@ -304,10 +306,53 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"Button",
-			"resolution_button",
-			"pawng1",
-			"newgame",
+			"'lang'",
+			"'options'",
+			"options",
+			"console",
+			"undoMove()",
+			"undo",
+			"nextTurn",
+			"history[",
+			"nextTurn",
+			"history[-1]",
+			"text_si",
+			"setConsole",
+			"redraw",
+			"blit",
+			"game_font",
+			"game.",
+			"printCon",
+			"Game(",
+			"printConsole",
+			"try:",
+			"except:",
+			"try",
+			"            \n",
+			"saveSquare",
+			"changes",
+			"testRe",
+			"saveSquare",
+			"changeLanguage",
+			"n",
+			"%s",
+			"dump",
+			"save",
+			"write",
+			"language",
+			"loadGame",
+			"newGame",
+			"turn",
+			"select",
+			"loadGame",
+			"nextTurn",
+			"loadGame",
+			"undoMove",
+			"undo",
+			"loadGame",
+			"nextT",
+			"turn",
+			"save",
 			";\n",
 			"delete",
 			"indexof",
@@ -388,17 +433,7 @@
 			"æ",
 			"¹",
 			"³",
-			"ê",
-			"</hr>",
-			"6",
-			"10",
-			"3",
-			"frind_id",
-			")\n",
-			"print",
-			"get_or_create",
-			"<h1>Welcome</h1>",
-			"\n    global fpsTime\n    global setDisplay\n\n    fpsTime = pygame.time.Clock()\n    setDisplay = pygame.display.set_mode((resWidth,resHeight))\n    pygame.display.set_caption('controlling')\n    runGame()"
+			"ê"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -440,29 +475,27 @@
 			[
 				{
 					"buffer": 0,
-					"file": "3chess.py",
+					"file": "/home/maciej/Development/Projects/3chess/3chess.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 34575,
+						"buffer_size": 37447,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								29275,
-								29275
+								1528,
+								1528
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 9654.0,
+						"translation.x": -0.0,
+						"translation.y": 830.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -552,7 +585,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 162.0,
+	"side_bar_width": 244.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

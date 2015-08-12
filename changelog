@@ -1,8 +1,15 @@
 3chess changelog
 Maciej Sobolewski
 
+Version 0.3
+Date: 12.08.2015
+- New language system using external file.
+- Functional console.
+- Fixed Save/Load bugs.
+- Minor fixes.
+
 Version 0.2.6
-Date: 23.04.215
+Date: 23.04.2015
 - Fully functional language support.
 
 Version 0.2.5
